@@ -10,8 +10,8 @@ import okhttp3.Interceptor;
 import okhttp3.Response;
 
 /**
- * Created by Ikhiloya Imokhai on 2019-10-19.
- * <p>
+ * .
+ *
  * Retrofit Interceptor to intercept and decrypt response from the server
  */
 public class DecryptionInterceptor implements Interceptor {
