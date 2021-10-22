@@ -19,10 +19,16 @@
             app:popupTheme="@style/Theme.MovieGround.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerViewMovies"/>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerViewMovies"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

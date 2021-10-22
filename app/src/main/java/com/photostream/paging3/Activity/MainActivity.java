@@ -1,10 +1,13 @@
 package com.photostream.paging3.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.LoadState;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.photostream.paging3.Adapter.MoviesLoadStateAdapter;
 import com.photostream.paging3.Adapter.MoviesAdapter;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // Create ViewModel
         MainActivityViewModel mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
-        mainActivityViewModel.getSearchResults(getLifecycle()).observe(this, photosPagingData -> moviesAdapter.submitData(getLifecycle(), photosPagingData));
+        mainActivityViewModel.getSearchResults(getLifecycle()).observe(this, moviesPagingData ->moviesAdapter.submitData(getLifecycle(), moviesPagingData));
 
         // Create GridlayoutManger with span of count of 2
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
@@ -65,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 // If progress will be shown then span size will be 1 otherwise it will be 2
                 return moviesAdapter.getItemViewType(position) == MoviesAdapter.LOADING_ITEM ? 1 : 2;
             }
+        });
+
+        moviesAdapter.addLoadStateListener(loadStates -> {
+            binding.swipeRefresh.setRefreshing(loadStates.getRefresh() instanceof LoadState.Loading);
+            return null;
+        });
+        binding.swipeRefresh.setOnRefreshListener(() -> {
+            binding.swipeRefresh.setRefreshing(false);
+//            moviesAdapter.refresh();
         });
     }
 }

@@ -35,6 +35,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
     implementation "androidx.paging:paging-runtime:3.0.1"
     implementation "androidx.paging:paging-guava:3.0.1"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation 'com.google.android.material:material:1.4.0'
     // Gson Library dependency for json to object conversion
@@ -47,7 +48,7 @@ dependencies {
     // Retrofit support adapter
     implementation 'com.squareup.retrofit2:adapter-guava:2.9.0'
     // Optional - Okhttp logging library for debug purpose
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     // Image loading library support
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

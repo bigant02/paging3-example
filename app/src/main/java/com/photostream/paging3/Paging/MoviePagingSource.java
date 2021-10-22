@@ -44,6 +44,26 @@ public class MoviePagingSource extends ListenableFuturePagingSource<Long , Movie
     @androidx.annotation.Nullable
     @Override
     public Long getRefreshKey(@NonNull PagingState<Long, Movie> pagingState) {
+        Integer anchorPosition = pagingState.getAnchorPosition();
+        if (anchorPosition == null) {
+            return null;
+        }
+
+        LoadResult.Page<Long, Movie> anchorPage = pagingState.closestPageToPosition(anchorPosition);
+        if (anchorPage == null) {
+            return null;
+        }
+
+        Long prevKey = anchorPage.getPrevKey();
+        if (prevKey != null) {
+            return prevKey + 1;
+        }
+
+        Long nextKey = anchorPage.getNextKey();
+        if (nextKey != null) {
+            return nextKey - 1;
+        }
+
         return null;
     }
 }
